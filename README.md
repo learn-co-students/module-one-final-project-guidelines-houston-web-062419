@@ -57,3 +57,12 @@ Projects need to be approved prior to launching into them, so take some time to 
 # in config/environment.rb add this line:
 ActiveRecord::Base.logger = nil
 ```
+Project 
+INTRO
+Premise of this project utilizes the Command Line Interface(CLI), Create Read Update 
+Delete(CRUD) and ActiveRecord concepts. involves 
+For this project, we decided to explore the scenario of a customer's purchase. There are three parts to the project, they are customer, item and purchase(joiner).
+Customer has name and email address, item has name and it's price, and purchase has 
+customer, item, quantity and total. 
+
+Customer chooses the item he or she wants to buy, information of the price, the name and price of item is passed on to the joiner class purchase. The customer information, name and email address will also be passed to purchase.  
