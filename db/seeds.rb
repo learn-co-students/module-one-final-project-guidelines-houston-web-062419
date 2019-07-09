@@ -1,8 +1,3 @@
-def finalPrice(price, quantity)
-    price * quantity
-end
-
-
 i1 = Item.create(name: "V neck T-shirt", price: 15)
 i2 = Item.create(name: "Crew neck shirt", price: 10)
 i3 = Item.create(name: "Wool sweater", price: 20)
@@ -28,6 +23,10 @@ i22 = Item.create(name: "Laptop bag", price: 20)
 i23 = Item.create(name: "Hoodie", price: 30)
 i24 = Item.create(name: "Button down shirt", price: 25)
 i25 = Item.create(name: "Underwear", price: 15)
+def finalPrice(price, quantity)
+    price * quantity
+end
+
 
 
 c1 = Customer.create(name: "Name1", email_address: "email@address.com")
