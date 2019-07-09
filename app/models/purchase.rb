@@ -1,4 +1,4 @@
-# class Purchase < ActiveRecord::Base 
-#     belongs_to :customer
-#     belongs_to :item
-# end
+class Purchase < ActiveRecord::Base 
+    belongs_to :customer
+    belongs_to :item
+end
