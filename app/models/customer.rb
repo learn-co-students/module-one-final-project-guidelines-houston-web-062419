@@ -1,4 +1,4 @@
-# class Customer < ActiveRecord::Base 
-#     has_many :purchases
-#     has_many :items, through: :purchases
-# end
+class Customer < ActiveRecord::Base 
+    has_many :purchases
+    has_many :items, through: :purchases
+end
