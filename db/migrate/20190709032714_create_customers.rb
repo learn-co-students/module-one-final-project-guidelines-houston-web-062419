@@ -19,7 +19,7 @@ end
 # before migrating you need to find out if you need to write a gets.chomp type method in here since 
 # I want the customer to input their information.
 
-#  add column at 39:45 on 1st youtube video
+# add column at 39:45 on 1st youtube video
 
 # NEVER REMOVE THINGS FROM SCHEMA FILE!! MIGRATIONS WILL DO THAT FOR YOU
 
