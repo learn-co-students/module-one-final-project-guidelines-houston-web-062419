@@ -1,5 +1,5 @@
-def finalPrice(price, qun)
-    price*qun
+def finalPrice(price, quantity)
+    price * quantity
 end
 
 
@@ -37,5 +37,7 @@ c3 = Customer.create(name:"Name3", email_address: "email3@address.com")
 
 
 p1 = Purchase.create(character_id: c1.id, item_id: i2.id, quantity: 1, total: finalPrice(i2.price, 1))
+p2 = Purchase.create(character_id: c2.id, item_id: i5.id, quantity: 3, total: finalPrice(i2.price, 3))
+
 
  
