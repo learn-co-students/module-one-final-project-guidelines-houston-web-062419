@@ -1,20 +1,22 @@
-prompt = TTY::Prompt.new
+def do_stuff
+    prompt = TTY::Prompt.new
 
-# def ask_name
-name = prompt.ask('What is your name?', default: ENV['USER'])
-puts name
-email = prompt.ask('What is your email address?')
-puts email
+    # def ask_name
+    name = prompt.ask('What is your name?', default: ENV['USER'])
+    puts name
+    email = prompt.ask('What is your email address?')
+    puts email
 
-Student.create(name: name, email_address: email)
-# end
+    Student.create(name: name, email_address: email)
+    # end
 
-name = prompt.ask('What is your name?', default: ENV['USER'])
-puts name
-email = prompt.ask('What is your email address?')
-puts email
+    name = prompt.ask('What is your name?', default: ENV['USER'])
+    puts name
+    email = prompt.ask('What is your email address?')
+    puts email
 
-Student.create(name: name, email_address: email)
+    Student.create(name: name, email_address: email)
+end
 
 # ask_name
 
