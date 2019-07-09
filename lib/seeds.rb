@@ -1,11 +1,11 @@
-Item.destroy_all
 
-i1 = Item.create(name: "V neck T-shirt", price: 15)
-i2 = Item.create(name: "Crew neck shirt", price: 10)
-i3 = Item.create(name: "Wool sweater", price: 20)
-i4 = Item.create(name: "Denim jacket", price: 30)
-i5 = Item.create(name:"Raincoat", price: 20)
-i6 = Item.create(name: "Denim shorts", price: 17)
+
+# i1 = Item.create("V neck T-shirt", 15)
+# i2 = Item.create("Crew neck shirt", 10)
+# i3 = Item.create("Wool sweater", 20)
+# i4 = Item.create("Denim jacket", 30)
+# i5 = Item.create("Raincoat", 20)
+# i6 = Item.create("Denim shorts", 17)
 # i7 = Item.create("Jeans", 25)
 # i8 = Item.create("Swim trunks", 15)
 # i9 = Item.create("Tank top", 10)
