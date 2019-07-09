@@ -1,3 +1,9 @@
+def finalPrice(price, qun)
+    price*qun
+end
+
+
+
 i1 = Item.create("V neck T-shirt", 15)
 i2 = Item.create("Crew neck shirt", 10)
 i3 = Item.create("Wool sweater", 20)
@@ -24,3 +30,12 @@ i23 = Item.create("Hoodie", 30)
 i24 = Item.create("Button down shirt", 25)
 i25 = Item.create("Underwear", 15)
 
+
+c1 = Customer.create(name: "Name1", email_address: "email@address.com")
+c2 = Customer.create(name: "Name2", email_address: "email2@address.com")
+c3 = Customer.create(name:"Name3", email_address: "email3@address.com")
+
+
+p1 = Purchase.create(character_id: c1.id, item_id: i2.id, quantity: 1, total: finalPrice(i2.price, 1))
+
+ 
