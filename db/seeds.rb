@@ -1,3 +1,6 @@
+Customer.destroy_all
+Item.destroy_all 
+
 i1 = Item.create(name: "V neck T-shirt", price: 15)
 i2 = Item.create(name: "Crew neck shirt", price: 10)
 i3 = Item.create(name: "Wool sweater", price: 20)
