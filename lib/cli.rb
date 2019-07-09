@@ -1,22 +1,19 @@
-def do_stuff
     prompt = TTY::Prompt.new
 
-    # def ask_name
+    puts "Welcome to Hogwarts!"
+    puts "Please enter your information so we can add you to the Sorting Database."
     name = prompt.ask('What is your name?', default: ENV['USER'])
     puts name
-    email = prompt.ask('What is your email address?')
+    email = prompt.ask('What is your email address? (By entering email address, you agree to receive school communications via email...as well as owl post.)')
     puts email
+    puts "Thank you! You have been added"
 
     Student.create(name: name, email_address: email)
-    # end
 
-    name = prompt.ask('What is your name?', default: ENV['USER'])
-    puts name
-    email = prompt.ask('What is your email address?')
-    puts email
+    prompt = TTY::Prompt.new
 
-    Student.create(name: name, email_address: email)
-end
+    choice = prompt.select("\nPlease choose from the following options:", %w(Students Houses Values Exit))
+    puts choice
 
 # ask_name
 
