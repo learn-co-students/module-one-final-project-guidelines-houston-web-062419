@@ -7,68 +7,61 @@ class CLI
     @@your_items = []
     @@quan_total = 0
 
-    def initialize
-        # binding.pry
-        @prompt = TTY::Prompt.new 
+    def sign_up_and_item_quantity
         
+        @prompt.ask('Hello and welcome to The Simple Store! Press ENTER to sign up and make a purchase!')
+
+        name = @prompt.ask('Please enter your name (first and last):') do |q|
+            q.validate(/\D\s/, 'Please include your name.')
+        end
+        email = @prompt.ask('Please enter your email address:') do |q|
+            q.validate(/\A\w+@\w+\.\w+\Z/, 'Invalid email address') 
+            # prompt.ask('What is your email?') { |q| q.validate :email }
+        end
+        
+        @@customer = Customer.create(name: name, email_address: email)
+
+        @prompt.ask("Thanks for creating an account! For a list of items sold at our Simple Store press ENTER!")
+
+        list_of_items
+
+        ask_customer_for_item
+
+        quan = 0
+        while quan == 0
+            quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
+        end
+
+        # binding.pry
+
+        puts "Your item has been added to you cart!"
+        
+        purchase_another
+
     end
 
+    
     def ask_customer_for_item
-        item_name = @prompt.ask("What would you like to purchase? (Please add item name)")
-        item = Item.find_by(name: item_name)
-        while item == nil
-            item_name = @prompt.ask("Please enter a valid item (check spelling or capitalization")
-            item = Item.find_by(name: item_name)
+
+
+        item_name = @prompt.ask("What would you like to purchase? (Please add item name)") do |q|
+            q.validate(/\D/, 'Please enter an item name:')
         end
-        @@all_items << item_name 
-        return item
-    end 
 
-    # def purchase_another
-    #     q = @prompt.yes?('Would you like to purchase another item?') 
-    #         # binding.pry
-    #     while q == true
-    #         ask_customer_for_item_add_to_purchase
-    #     end
-        
-    #     if q == false
-    #         @prompt.ask("Let's checkout!")
-    #         checkout_now
-    #     end
-    # end
+        item = Item.find_by("lower(name)= ?", item_name.downcase)
 
-    # def list_of_items
-    #     # binding.pry
-    #     @items_list = Item.all.map do |item|
-    #         item.name
-    #     end
-    #     puts @items_list
-    # end
-
-    # def checkout_now
-    #     binding.pry
-    #     "I agree to pay #{purchase.total}"
-    # end
-
-    # def ask_customer_for_item_add_to_purchase
-
-    #     item_name = @prompt.ask("What would you like to purchase? (Please add item name)") do |q|
-    #         q.validate(/\D/, 'Please enter an item name:')
-    #     end
-
-    #     item = Item.find_by("lower(name)= ?", item_name.downcase)
-
-    #     while item == nil
-    #         item_name = @prompt.ask("Please enter a valid item (check spelling)")
+        while item == nil
+            item_name = @prompt.ask("Please enter a valid item (check spelling)")
             
-    #         item = Item.find_by("lower(name)= ?", item_name.downcase)
+            item = Item.find_by("lower(name)= ?", item_name.downcase)
 
-    #     end
-    #     return item
-    #     # binding.pry
+        end
+        return item
+        # binding.pry
         
+        new_purchase = Purchase.create(customer_id: customer.id, item_id: item.id, quantity: quan, total: (item.price * quan))
 
-    # end
+    end
 
     def query_customer(currently_shopping_customer_id)
         item = ask_customer_for_item
@@ -78,71 +71,47 @@ class CLI
         @@total_purchase += purchase.total
     end
 
-    def run_do_stuff_i_dunno
-        @prompt.yes?('Hello and welcome to The Simple Store! Would you like to make a purchases?')
-        name = @prompt.ask('Please enter your name:')
-        email = @prompt.ask('Please enter your email address:')
-        something = Customer.create(name: name, email_address: email)
-        id = something.id
-        puts "Thanks for creating an account!"
-        query_customer(id)
-        
+    def purchase_another
         while true
-            ask_sec = @prompt.ask('Would you like to add more items? Yes or No')
-            if (ask_sec == 'Yes')
-                query_customer(id)  
+            ask_sec = @prompt.yes?('Would you like to add more items?????')
+            if (ask_sec == true)
+                query_customer(@@customer.id)
+
             end
-            if (ask_sec == 'No')
-                break
+            if (ask_sec == false)
+                state_customer_total
+                
             end
+            while ask_sec == nil
+                puts "Please enter Y/N"
+                query_customer(@@customer.id)
+            end 
         end
-        puts "Your orders are #{@@all_items} and your total is $#{@@total_purchase}."
     end
+
+    def initialize
+        # binding.pry
+        @prompt = TTY::Prompt.new 
+        
+    end
+
+    def list_of_items
+        # binding.pry
+        items_list = Item.all.map do |item|
+            item.name
+        end
+        puts items_list
+    end
+
+    def state_customer_total
+        @prompt.ask("Your total is $#{@@total_purchase}")
+    end
+
+    
+
 end
 
-ourCLIInstanceObjectThing = CLI.new
-ourCLIInstanceObjectThing.run_do_stuff_i_dunno
 
 
-#     def sign_up_and_item_quantity
-#         @prompt.ask('Hello and welcome to The Simple Store! Press ENTER to sign up and make a purchase!')
-
-#         name = @prompt.ask('Please enter your name (first and last):') do |q|
-#             q.validate(/\D\s/, 'Please include your name.')
-#         end
-#         email = @prompt.ask('Please enter your email address:') do |q|
-#             q.validate(/\A\w+@\w+\.\w+\Z/, 'Invalid email address') 
-#             # prompt.ask('What is your email?') { |q| q.validate :email }
-#         end
-        
-#         customer = Customer.create(name: name, email_address: email)
-
-#         @prompt.ask("Thanks for creating an account! For a list of items sold at our Simple Store press ENTER!")
-
-     
-#         list_of_items
-        
-#         item = ask_customer_for_item_add_to_purchase
-
-#         quan = 0
-#         while quan == 0
-#             quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
-#         end
-
-#         # binding.pry
-        
-#         # purchase = Purchase.create(customer_id: customer.id, item_id: item.id, quantity: quan, total: (item.price * quan))
-
-#         purchase = Purchase.create(customer_id: customer.id, item_id: item.id, quantity: quan, total: (item.price * quan))
-        
-#         puts "Your item has been added to you cart!"
-        
-#         purchase_another
-
-#     end
-# end
-
-
-
-# cli = CLI.new
-# cli.sign_up_and_item_quantity
+cli = CLI.new
+cli.sign_up_and_item_quantity
