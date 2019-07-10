@@ -75,7 +75,8 @@ class CLI
 
             end
             if (ask_sec == false)
-                start_checkout
+                state_customer_total
+                
             end
             while ask_sec == nil
                 puts "Please enter Y/N"
@@ -98,7 +99,7 @@ class CLI
         puts items_list
     end
 
-    def start_checkout
+    def state_customer_total
         @prompt.ask("Your total is $#{@@total_purchase}")
     end
 
