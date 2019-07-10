@@ -3,8 +3,7 @@ require_relative '../config/environment'
 
 class CLI
     @@total_purchase = 0
-    total_purchase2 = 0
-    # @@total_purchase2 = 0
+
     def initialize
         @prompt = TTY::Prompt.new 
     end
