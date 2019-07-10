@@ -1,7 +1,7 @@
 require_relative '../config/environment'
 
 welcome
-choice
+main_menu
 student_menu
 house_menu
 value_menu

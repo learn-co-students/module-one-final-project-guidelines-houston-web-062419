@@ -1,5 +1,4 @@
 Student.destroy_all
-
 House.destroy_all
 Value.destroy_all
 

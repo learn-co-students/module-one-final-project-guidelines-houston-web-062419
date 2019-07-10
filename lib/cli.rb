@@ -13,7 +13,7 @@ def welcome
     Student.create(name: name, email_address: email)
 end
 
-def choice
+def main_menu
     puts "\nMain Menu"
     choice = @prompt.select("Please choose from the following options:") do |menu|
         menu.choice 'Accio Student Information', 1
@@ -33,18 +33,61 @@ def choice
     end
 end
 
-def student_menu
-    # choice = @prompt.select("\nWould you like to search through names or email addresses?:") do |menu|
-    #     menu.choice 'Names', 1
-    #     menu.choice 'Email Addresses', 2
-    # end
+def student_menu (response)
+
     puts "\nPlease type the full name of the student you are searching for.\n\n"
     response = gets.chomp
+
+    if Student.name.include?(response)
+        student_choice = Student.all.find_by(name: response)
+        puts "Name: #{student_choice.name}"
+        puts "Email Address: #{student_choice.email_address}"
+        return_value = prompt.select("Please choose if you would like to try again, return to the main menu, or exit the database") do |menu|
+            menu.choice 'Try again', 1
+            menu.choice 'Main Menu', 2
+            menu.choice 'Exit', 3
+
+            if choice == 1
+                student_menu()
+            elsif choice == 2
+                main_menu()
+            else choice == 3
+                exit()
+            end
+        end
+    
+    else
+        puts "I'm sorry. There is no student matching the name entered."
+        return_value = prompt.select("Please choose if you would like to try again, return to the main menu, or exit the database") do |menu|
+            menu.choice 'Try again', 1
+            menu.choice 'Main Menu', 2
+            menu.choice 'Exit', 3
+
+            if choice == 1
+                student_menu()
+            elsif choice == 2
+                main_menu()
+            else choice == 3
+                exit()
+            end
+        end
+
+#         # Student.all.find_by(name: response)
+#         puts "Name: #{response}\n"
+#     # end
+# #         puts "Email Address: #{Student.response.email_address}\n\n"
+#     else
+#         puts "\nUnfortunately, there is no student matching the name entered.\n"
+# #         puts "Please try again or press 'q' to return to the main menu."
+#     end
 # end
 
-# def student_info(response)
-    if Student.name.include?(response)
-        # Student.all.find_by(name: response)
+def house_menu
+    puts "\nPlease type the full name of the house you are searching for.\n\n"
+    response = gets.chomp
+    # def student_info(response)
+    if House.name.include?(response)
+        # House.all.find_by(name: response)
         puts "Name: #{response}\n"
     # end
 #         puts "Email Address: #{Student.response.email_address}\n\n"
@@ -54,13 +97,8 @@ def student_menu
     end
 end
 
-def house_menu
-    puts "\nPlease type the full name of the house you are searching for.\n\n"
-    response = gets.chomp
-end
-
 def value_menu
-    choice = @prompt.select("Which value do you uphold?:") do |menu|
+    choice = @prompt.select("Which value do you believe you possess?:") do |menu|
         menu.choice 'courage', 1
         menu.choice 'ambition', 2
         menu.choice 'loyalty', 3
@@ -69,15 +107,20 @@ def value_menu
         menu.choice 'resourcefulness', 6
     end
 
-    # if choice == 1
-    #     student_menu()
-    # elsif choice == 2
-    #     house_menu()
-    # elsif choice == 3
-    #     value_menu()
-    # else choice == 4
-    #     return
-    # end
+    if choice == 1
+        puts "You may like House Gryffindor! You also share values with Harry Potter!"
+    elsif choice == 2
+        puts "You may like House Slytherin! You also share values with Draco Malfoy!"
+    elsif choice == 3
+        puts "You may like House Hufflepuff! You also share values with Cedric Diggory!"
+    elsif choice == 4
+        puts "You may like House Ravenclaw! You also share values with Luna Lovegood!"
+    elseif choice == 5
+    puts "You may like House Gryffindor! You also share values with Hermione Granger!"
+        return
+    else choice == 6
+        puts "You may like House Slytherin! You also share values with Pansy Parkinson!"
+    end
 end
 
 
