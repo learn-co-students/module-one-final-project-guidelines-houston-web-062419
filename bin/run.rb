@@ -5,5 +5,4 @@ main_menu
 student_menu
 house_menu
 value_menu
-# student_info
 # puts "HELLO WORLD"
