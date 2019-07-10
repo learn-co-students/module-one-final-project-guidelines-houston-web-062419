@@ -108,5 +108,5 @@ end
 
 
 
-cli = CLI.new
-cli.sign_up_and_item_quantity
+# cli = CLI.new
+# cli.sign_up_and_item_quantity
