@@ -20,7 +20,7 @@ class CLI
             item_name = @prompt.ask("Please enter a valid item (check spelling or capitalization")
             item = Item.find_by(name: item_name)
         end
-        @@all_items << item. 
+        @@all_items << item_name 
         return item
     end 
 
@@ -74,8 +74,6 @@ class CLI
         item = ask_customer_for_item
         quan = (@prompt.ask('How many would you like to purchase? Must be an integer!')).to_i
         purchase = Purchase.create(customer_id: currently_shopping_customer_id, item_id: item.id, quantity: quan, total: (item.price * quan))
-        # @@your_items << [name, quan] 
-        # binding.pry 
         @@quan_total += quan 
         @@total_purchase += purchase.total
     end
@@ -88,27 +86,17 @@ class CLI
         id = something.id
         puts "Thanks for creating an account!"
         query_customer(id)
-        # puts "#{quan}"
-        # puts "Your items are #{@@your_items}"
         
         while true
             ask_sec = @prompt.ask('Would you like to add more items? Yes or No')
             if (ask_sec == 'Yes')
-                query_customer(id)
-                # puts "Your items are #{@@your_items}"
+                query_customer(id)  
             end
             if (ask_sec == 'No')
                 break
             end
-            while ask_sec == nil
-                puts "Please enter Yes or No"
-                query_customer(id)
-            end 
         end
-
-        # puts "Your items are #{@@your_items}"
-        puts "Your total is #{@@quan_total},#{@@total_purchase}. Thank you and please come back again."
-        
+        puts "Your orders are #{@@all_items} and your total is $#{@@total_purchase}."
     end
 end
 
