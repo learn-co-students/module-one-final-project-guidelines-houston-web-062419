@@ -9,10 +9,10 @@ s4 = Student.create(name: 'Luna Lovegood', email_address: 'llovegood@hogwarts.ed
 s5 = Student.create(name: 'Hermione Granger', email_address: 'hgranger@hogwarts.edu')
 s6 = Student.create(name: 'Pansy Parkinson', email_address: 'pparkinson@hogwarts.edu')
 
-h1 = House.create(name: 'Gryffindor')
-h2 = House.create(name: 'Hufflepuff')
-h3 = House.create(name: 'Ravenclaw')
-h4 = House.create(name: 'Slytherin')
+h1 = House.create(name: 'Gryffindor', info: '')
+h2 = House.create(name: 'Hufflepuff', info: '')
+h3 = House.create(name: 'Ravenclaw', info: '')
+h4 = House.create(name: 'Slytherin', info: '')
 
 Value.create(name: 'courage', student_id: s1.id, house_id: h1.id)
 Value.create(name: 'ambition', student_id: s2.id, house_id: h4.id)
