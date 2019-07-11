@@ -4,6 +4,8 @@ require_relative '../config/environment'
 class CLI
     @@total_purchase = 0
 
+    attr_accessor :customer
+
     def sign_up_and_item_quantity
         
         @prompt.ask('Hello and welcome to The Simple Store! Press ENTER to sign up and make a purchase!')
@@ -22,21 +24,23 @@ class CLI
 
         list_of_items
 
-        ask_customer_for_item
+        item = ask_customer_for_item
 
         quan = 0
         while quan == 0
             quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
         end
-
-        # binding.pry
-
-        puts "Your item has been added to you cart!"
         
-        purchase_another
 
+        first_purchase = Purchase.create(customer_id: @@customer.id, item_id: item.id, quantity: quan, total: (item.price * quan))
+        @@total_purchase += first_purchase.total
+        
+        puts "Your item has been added to you cart!"
+    
+        purchase_another?
+        
     end
-
+        
     
     def ask_customer_for_item
 
@@ -54,10 +58,7 @@ class CLI
 
         end
         return item
-        # binding.pry
         
-        new_purchase = Purchase.create(customer_id: customer.id, item_id: item.id, quantity: quan, total: (item.price * quan))
-
     end
 
     def query_customer(currently_shopping_customer_id)
@@ -67,21 +68,17 @@ class CLI
         @@total_purchase += purchase.total
     end
 
-    def purchase_another
+    def purchase_another?
         while true
-            ask_sec = @prompt.yes?('Would you like to add more items?????')
+            ask_sec = @prompt.yes?('Would you like to add more items?')
             if (ask_sec == true)
                 query_customer(@@customer.id)
 
             end
             if (ask_sec == false)
-                state_customer_total
-                
+                @prompt.ask("Your total is $#{@@total_purchase}. Press ENTER to continue")
+                begin_checkout
             end
-            while ask_sec == nil
-                puts "Please enter Y/N"
-                query_customer(@@customer.id)
-            end 
         end
     end
 
@@ -99,15 +96,30 @@ class CLI
         puts items_list
     end
 
-    def state_customer_total
-        @prompt.ask("Your total is $#{@@total_purchase}")
+    def begin_checkout
+        answer = @prompt.yes?('Are you ready to checkout?')
+        if (answer == true)
+            review_items 
+            checkout
+    # BREAKS HERE NEED TO ADD LIST OF PURCHASED ITEMS IN REVIEW_ITEMS AND MAKE CHECKOUT METHOD
+        end 
+        if
+            (answer == false)
+            query_customer(@@customer.id)
+        end
+    end 
+
+    def review_items
+        # LIST CUSTOMERS PURCHASES AND GIVE CUSTOMER CHANCE TO MODIFY OR DELETE A PURCHASE ITEM
     end
 
-    
+    def checkout
+        # MAKES CHECKOUT METHOD (ASKS FOR SHIPPING INFO) THANKS CUSTOMER AND STATES ITEMS ARE BEING SHIPPED
+    end
 
 end
 
 
 
-# cli = CLI.new
-# cli.sign_up_and_item_quantity
+cli = CLI.new
+cli.sign_up_and_item_quantity
