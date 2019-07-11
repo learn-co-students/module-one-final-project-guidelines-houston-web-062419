@@ -114,13 +114,7 @@ class CLI
         quan_dlt = (@prompt.ask('How many would you like to delete?')).to_i
         purchase = Purchase.create(customer_id: go_delete_id, item_id: item.id, quantity: quan_dlt, total: (item.price * quan_dlt))
         @@total_purchase -= purchase.total
-        # jkll;
     end
-
-    def chkout 
-        puts "ready to checkout"
-
-    end 
 
     def state_customer_total
         @prompt.ask("Your total is $#{@@total_purchase}")
