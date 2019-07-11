@@ -3,6 +3,9 @@ require_relative '../config/environment'
 
 class CLI
     @@total_purchase = 0
+    @@all_items = []
+    @@your_items = []
+    @@quan_total = 0
 
     attr_accessor :customer
 
@@ -15,7 +18,6 @@ class CLI
         end
         email = @prompt.ask('Please enter your email address:') do |q|
             q.validate(/\A\w+@\w+\.\w+\Z/, 'Invalid email address') 
-            # prompt.ask('What is your email?') { |q| q.validate :email }
         end
         
         @@customer_id = Customer.create(name: name, email_address: email).id
@@ -26,9 +28,36 @@ class CLI
 
         item = ask_customer_for_item
 
-        quan = 0
-        while quan == 0
-            quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
+        while true
+            ask_sec = @prompt.yes?('Would you like to add more items?????')
+            if (ask_sec == true)
+                query_customer(id)
+                puts "Your item has been added to you cart!"
+                state_customer_total
+            end
+            if (ask_sec == false)
+                puts "Your item has been added to you cart!"
+                state_customer_total
+                while true 
+                    query_before_chkout = @prompt.yes?('Before checking out, is there anything you want to remove?')
+                    if (query_before_chkout == true)
+                        delete_item(id)
+                        state_customer_total
+                    end
+                    if (query_before_chkout == false)
+                        break
+                    end 
+                    while (query_before_chkout == nil)
+                        puts "Please enter Y/N"
+                    end 
+                end 
+                state_customer_total
+                break 
+            end
+            while ask_sec == nil
+                puts "Please enter Y/N"
+                query_customer(id)
+            end 
         end
         
 
@@ -45,14 +74,12 @@ class CLI
         item_name = @prompt.ask("What would you like to purchase? (Please add item name)") do |q|
             q.validate(/\D/, 'Please enter an item name:')
         end
-
         item = Item.find_by("lower(name)= ?", item_name.downcase)
 
         while item == nil
             item_name = @prompt.ask("Please enter a valid item (check spelling)")
             
             item = Item.find_by("lower(name)= ?", item_name.downcase)
-
         end
         return item
     end
@@ -83,13 +110,10 @@ class CLI
     end
 
     def initialize
-        # binding.pry
         @prompt = TTY::Prompt.new 
-        
     end
 
     def list_of_items
-        # binding.pry
         items_list = Item.all.map do |item|
             item.name
         end
