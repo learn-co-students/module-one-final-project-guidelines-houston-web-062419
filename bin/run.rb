@@ -43,11 +43,12 @@ class CLI
                     query_before_chkout = @prompt.yes?('Before checking out, is there anything you want to remove?')
                     if (query_before_chkout == true)
                         delete_item(id)
+                        state_customer_total
                     end
                     if (query_before_chkout == false)
                         break
                     end 
-                    while query_before_chkout == nil
+                    while (query_before_chkout == nil)
                         puts "Please enter Y/N"
                     end 
                 end 
