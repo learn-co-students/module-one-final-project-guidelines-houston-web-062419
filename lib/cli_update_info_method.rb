@@ -7,4 +7,5 @@ def update_info_menu
     new_response = gets.chomp
     user.email_address = new_response
     user.save
+    puts "Thanks! The email address has been updated."
 end
