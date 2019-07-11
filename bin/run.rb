@@ -30,6 +30,7 @@ class CLI
         query_customer(id)
 
         puts "Your item has been added to you cart!"
+        state_customer_total
 
         while true
             ask_sec = @prompt.yes?('Would you like to add more items?????')
