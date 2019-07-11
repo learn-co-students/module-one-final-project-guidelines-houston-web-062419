@@ -11,30 +11,30 @@ def student_menu
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
             menu.choice 'Exit', 3
+        end
 
-            if choice == 1
-                student_menu()
-            elsif choice == 2
-                main_menu()
-            else choice == 3
-                exit_menu()
-            end
+        if return_value == 1
+            student_menu()
+        elsif return_value == 2
+            main_menu()
+        else return_value == 3
+            exit_menu()
         end
     
     else
-        puts "I'm sorry. There is no student matching the name entered."
-        return_value = @prompt.select("Please choose if you would like to try again, return to the main menu, or exit the database") do |menu|
+        puts "\nI'm sorry. There is no student matching the name entered.\n\n"
+        choice = @prompt.select("Please choose if you would like to try again, return to the main menu, or exit the database") do |menu|
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
             menu.choice 'Exit', 3
+        end
 
-            if choice == 1
-                student_menu()
-            elsif choice == 2
-                main_menu()
-            else choice == 3
-                exit_menu()
-            end
+        if choice == 1
+            student_menu()
+        elsif choice == 2
+            main_menu()
+        else choice == 3
+            exit_menu()
         end
     end
 end

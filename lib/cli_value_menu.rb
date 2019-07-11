@@ -21,4 +21,18 @@ def value_menu
     else choice == 6
         puts "\nYou may like House Slytherin! You also share values with Pansy Parkinson! Go to the Student Search Menu to see how to contact her. "
     end
+
+choice = @prompt.select("Please choose if you would like to try a new value search, return to the main menu, or exit the database") do |menu|
+    menu.choice 'Try again', 1
+    menu.choice 'Main Menu', 2
+    menu.choice 'Exit', 3
+end
+
+if choice == 1
+    value_menu()
+elsif choice == 2
+    main_menu()
+else choice == 3
+    exit_menu()
+end
 end

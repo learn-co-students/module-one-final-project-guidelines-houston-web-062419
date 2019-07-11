@@ -4,17 +4,18 @@ def report_menu
     response = gets.chomp
     user = Student.find_by(name: response)
     user.destroy
+
     return_value = @prompt.select("Thank you for your candor. Please choose an option:") do |menu|
         menu.choice 'Report another', 1
         menu.choice 'Main Menu', 2
         menu.choice 'Exit', 3
+    end
 
-        if choice == 1
-            report_menu()
-        elsif choice == 2
-            main_menu()
-        else choice == 3
-            exit_menu()
-        end
+    if return_value == 1
+        report_menu()
+    elsif return_value == 2
+        main_menu()
+    else return_value == 3
+        exit_menu()
     end
 end

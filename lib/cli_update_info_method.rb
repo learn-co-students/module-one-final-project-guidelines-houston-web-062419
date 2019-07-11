@@ -8,4 +8,18 @@ def update_info_menu
     user.email_address = new_response
     user.save
     puts "Thanks! The email address has been updated."
+
+    return_value = @prompt.select("Please choose if you would like to try a new student search, return to the main menu, or exit the database") do |menu|
+        menu.choice 'Try again', 1
+        menu.choice 'Main Menu', 2
+        menu.choice 'Exit', 3
+    end
+
+    if return_value == 1
+        update_info_menu()
+    elsif return_value == 2
+        main_menu()
+    else return_value == 3
+        exit_menu()
+    end
 end

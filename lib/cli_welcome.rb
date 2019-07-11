@@ -8,7 +8,7 @@ def welcome
     puts name
     email = @prompt.ask('What is your email address? (By entering email address, you agree to receive school communications via email...as well as owl post.)')
     puts email
-    puts "Thank you! You have been added to the Sorting Database."
+    puts "\nThank you! You have been added to the Sorting Database.\n\n\n"
 
     Student.create(name: name, email_address: email)
 end
