@@ -7,9 +7,6 @@ class CLI
     @@your_items = []
     @@quan_total = 0
 
-    def delete_item
-    end 
-
     def sign_up_and_item_quantity
         
         @prompt.ask('Hello and welcome to The Simple Store! Press ENTER to sign up and make a purchase!')
@@ -38,19 +35,6 @@ class CLI
                 query_customer(id)
                 puts "Your item has been added to you cart!"
                 state_customer_total
-                while true 
-                    query_before_chkout = @prompt.yes?('Before checking out, is there anything you want to remove?')
-                    if (query_before_chkout == true)
-                        delete_item(id)
-                    end
-                    if (query_before_chkout == false)
-                        break
-                    end 
-                    while (query_before_chkout == nil)
-                        puts "Please enter Y/N"
-                    end 
-                end 
-                state_customer_total
             end
             if (ask_sec == false)
                 puts "Your item has been added to you cart!"
@@ -63,7 +47,7 @@ class CLI
                     if (query_before_chkout == false)
                         break
                     end 
-                    while (query_before_chkout == nil)
+                    while query_before_chkout == nil
                         puts "Please enter Y/N"
                     end 
                 end 
