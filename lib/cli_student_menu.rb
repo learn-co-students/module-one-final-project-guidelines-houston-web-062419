@@ -4,7 +4,7 @@ def student_menu
 
     if Student.all.find_by(name: response)
         choice = Student.all.find_by(name: response)
-        puts "\nName: #{choice.name}"
+        puts "Name: #{choice.name}"
         puts "Email Address: #{choice.email_address}"
 
         return_value = @prompt.select("Please choose if you would like to try a new student search, return to the main menu, or exit the database") do |menu|
