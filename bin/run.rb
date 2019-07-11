@@ -36,8 +36,10 @@ class CLI
             if (ask_sec == true)
                 query_customer(id)
                 puts "Your item has been added to you cart!"
+                state_customer_total
             end
             if (ask_sec == false)
+                puts "Your item has been added to you cart!"
                 state_customer_total
                 break 
             end
