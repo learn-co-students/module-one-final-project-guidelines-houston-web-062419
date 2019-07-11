@@ -59,7 +59,11 @@ class CLI
 
     def query_customer(currently_shopping_customer)
         item = ask_customer_for_item
-        quan = (@prompt.ask('How many would you like to purchase? Must be an integer!')).to_i
+        quan = 0
+        while quan == 0
+            quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
+        end
+        # quan = (@prompt.ask('How many would you like to purchase? Must be an integer!')).to_i
         purchase = currently_shopping_customer.add_purchase(item, quan)
         @@total_purchase += purchase.total
         puts "Your item has been added to you cart!"
@@ -77,8 +81,9 @@ class CLI
             if (ask_sec =="no")
                 print_current_items
                 begin_checkout
-                break
+            
             end
+            break
         end
     end
 
@@ -111,6 +116,7 @@ class CLI
             if (answer == "no")
                 query_customer(get_current_customer)
             end
+        
     end 
 
     def print_current_items
