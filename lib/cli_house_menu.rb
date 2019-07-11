@@ -2,10 +2,11 @@ def house_menu
     puts "\nPlease type the name of the house you are searching for.\n\n"
     response = gets.chomp
 
-    if House.name.include?(response)
-        house_choice = House.all.find_by(name: response)
-        puts "Name: #{house_choice.name}"
-        puts "Info: #{house_choice.info}"
+    if House.all.find_by(name: response)
+        choice = House.all.find_by(name: response)
+        puts "/nName: #{choice.name}"
+        puts "Info: #{choice.info}"
+        
         return_value = @prompt.select("Please choose if you would like to try a new house search, return to the main menu, or exit the database") do |menu|
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
