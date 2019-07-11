@@ -63,6 +63,7 @@ class CLI
         purchase = currently_shopping_customer.add_purchase(item, quan)
         @@total_purchase += purchase.total
         puts "Your item has been added to you cart!"
+        purchase_another?
     end
 
     def purchase_another?
@@ -174,3 +175,4 @@ end
 
 cli = CLI.new
 cli.sign_up_and_item_quantity
+
