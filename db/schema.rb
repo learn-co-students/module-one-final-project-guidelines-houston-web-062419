@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20190709152540) do
     t.integer "customer_id"
     t.integer "item_id"
     t.integer "quantity"
-    t.integer "total"
   end
 
 end
