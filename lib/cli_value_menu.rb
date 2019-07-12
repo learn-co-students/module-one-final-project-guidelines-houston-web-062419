@@ -1,5 +1,6 @@
 def value_menu
-
+    puts "\e[H\e[2J"
+    puts "Value Search Menu"
     choice = @prompt.select("Which value do you believe you embody the most?:") do |menu|
         menu.choice 'Courage', 1
         menu.choice 'Ambition', 2

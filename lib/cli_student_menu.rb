@@ -1,4 +1,6 @@
 def student_menu
+    puts "\e[H\e[2J"
+    puts "Student Search Menu"
     puts "\nFellow students are a wonderful source of information as you begin your life at Hogwarts. Please type the full name of the student you are searching for to receive their email address.\n\n"
     response = gets.chomp
 

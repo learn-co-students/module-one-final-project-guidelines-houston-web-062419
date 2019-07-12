@@ -1,4 +1,6 @@
 def update_info_menu
+    puts "\e[H\e[2J"
+    puts "Update Student Info"
     puts "Please enter the full name of the student whose email address requires updating."
     response = gets.chomp
     user = Student.find_by(name: response)

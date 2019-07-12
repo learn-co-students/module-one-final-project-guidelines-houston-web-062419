@@ -1,4 +1,6 @@
 def house_menu
+    puts "\e[H\e[2J"
+    puts "House Search Menu"
     puts "\nPlease type the name of the house you are searching to receive information regarding that house.\n\n"
     response = gets.chomp
 

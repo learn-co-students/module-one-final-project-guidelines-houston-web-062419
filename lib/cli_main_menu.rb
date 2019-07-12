@@ -1,4 +1,5 @@
 def main_menu
+    puts "\e[H\e[2J"
     puts "\nMain Menu"
     choice = @prompt.select("Please choose from the following options:") do |menu|
         menu.choice 'Accio Student Information', 1

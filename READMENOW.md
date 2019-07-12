@@ -1,5 +1,5 @@
 # Hogwarts Sorting Guide
-The Hogwarts Sorting Guide is here to help give prospective students information before they undergo the sorting hat ceremony. 
+The Hogwarts Sorting Guide is here to help give first-year students information before they undergo the sorting hat ceremony. 
 
 ## Usage Guide
 
@@ -11,7 +11,7 @@ The Hogwarts Sorting Guide is here to help give prospective students information
 4. In terminal, type in 'ruby bin/run.rb' to begin the app.
 
 ## Navigating the Database
-Welcome to Hogwarts School of Witchcraft and Wizardry! This database was made with the intention of showing new students the important relationship between students, houses, and what we call values - your personal principles and most distinctive traits. Students may peruse this database while waiting to be sorted into houses to get a grasp of the history of each houses and some of their notable members.
+Welcome to Hogwarts School of Witchcraft and Wizardry! This database was made with the intention of showing new students the important relationship between students, houses, and what we call values - your personal principles and most distinctive traits. Students may peruse this database while waiting to be sorted into houses to get a grasp of the history of each house and some of their notable members.
 
   - Each value belongs to a student and to a house.
   - A student has many values.
