@@ -1,13 +1,14 @@
 # require 'pry'
 require_relative '../config/environment'
+require "colorize"
 
+puts Image::WELCOME.colorize(:green)
 class CLI
     @@total_purchase = 0
 
     attr_accessor :customer
-
-    def sign_up_and_item_quantity
-        
+    
+    def sign_up_and_item_quantity    
         @prompt.ask('Hello and welcome to The Simple Store! Press ENTER to sign up and make a purchase!')
 
         name = @prompt.ask('Please enter your name (first and last):') do |q|
@@ -31,13 +32,11 @@ class CLI
             quan = @prompt.ask('How many would you like to purchase? Must be an integer!').to_i
         end
         
-
         first_purchase = get_current_customer.add_purchase(item, quan)
         @@total_purchase += first_purchase.total
         
         puts "Your item has been added to you cart!"
-        purchase_another?
-        
+        purchase_another?    
     end
         
     
@@ -50,9 +49,8 @@ class CLI
 
         while item == nil
             item_name = @prompt.ask("Please enter a valid item (check spelling)")
-            
+   
             item = Item.find_by("lower(name)= ?", item_name.downcase)
-
         end
         return item
     end
@@ -70,18 +68,15 @@ class CLI
         purchase_another?
     end
 
-    def purchase_another?
-        
+    def purchase_another?   
         while 
             ask_sec = @prompt.select("Would you like to add more items?", %w(yes no))
             if (ask_sec == "yes")
-                query_customer(get_current_customer)
-                
+                query_customer(get_current_customer)   
             end
             if (ask_sec =="no")
                 print_current_items
                 begin_checkout
-            
             end
             break
         end
@@ -89,8 +84,7 @@ class CLI
 
     def initialize
         # binding.pry
-        @prompt = TTY::Prompt.new 
-        
+        @prompt = TTY::Prompt.new  
     end
 
     def list_of_items
@@ -102,21 +96,17 @@ class CLI
     end
 
     def begin_checkout
-
         answer = @prompt.select("Are you ready to checkout?", %w(yes no))
-        
-            if (answer == "yes")
-                finished_modifying = false
-                while (!finished_modifying)
-                    finished_modifying = modify_order?
-                end
-                checkout
-                
-            end 
-            if (answer == "no")
-                query_customer(get_current_customer)
+        if (answer == "yes")
+            finished_modifying = false
+            while (!finished_modifying)
+                finished_modifying = modify_order?
             end
-        
+            checkout   
+        end 
+        if (answer == "no")
+            query_customer(get_current_customer)
+        end
     end 
 
     def print_current_items
@@ -160,19 +150,16 @@ class CLI
             item = Item.find_by("lower(name)= ?", item_name.downcase)
         end
         return item
-
     end
 
     def checkout
         @prompt.ask("Please enter your shipping address:")
-        @prompt.ask("Your order will be processed and shipped! Thank you for shopping at The Simple Store!")
-        
+        @prompt.ask("Your order will be processed and shipped! Thank you for shopping at The Simple Store!")  
     end
 
     def get_current_customer
         Customer.find(@@customer_id)
-    end
-    
+    end   
 end
 
 

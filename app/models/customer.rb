@@ -14,11 +14,8 @@ class Customer < ActiveRecord::Base
     end
 
     def remove_purchase(item, quan)
-        # binding.pry
         existing_purchase = Purchase.find_by(item_id: item.id, customer_id: self.id)
         existing_purchase.update(quantity: existing_purchase.quantity - quan)
-        # existing_purchase.save
-        # binding.pry
         return existing_purchase
     end
 end
