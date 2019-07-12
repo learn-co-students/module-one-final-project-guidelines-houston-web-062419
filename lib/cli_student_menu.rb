@@ -1,13 +1,13 @@
 def student_menu
-    puts "\nPlease type the full name of the student you are searching for.\n\n"
+    puts "\nFellow students are a wonderful source of information as you begin your life at Hogwarts. Please type the full name of the student you are searching for to receive their email address.\n\n"
     response = gets.chomp
 
     if Student.all.find_by(name: response)
         choice = Student.all.find_by(name: response)
-        puts "Name: #{choice.name}"
+        # puts "Name: #{choice.name}"
         puts "Email Address: #{choice.email_address}"
 
-        return_value = @prompt.select("Please choose if you would like to try a new student search, return to the main menu, or exit the database") do |menu|
+        return_value = @prompt.select("\n\nPlease choose if you would like to try a new student search, return to the main menu, or exit the database") do |menu|
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
             menu.choice 'Exit', 3

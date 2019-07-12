@@ -5,8 +5,8 @@ def report_menu
     user = Student.find_by(name: response)
     user.destroy
 
-    return_value = @prompt.select("Thank you for your candor. Please choose an option:") do |menu|
-        menu.choice 'Report another', 1
+    return_value = @prompt.select("\nThank you for your candor. Please choose an option:\n") do |menu|
+        menu.choice 'Report another student', 1
         menu.choice 'Main Menu', 2
         menu.choice 'Exit', 3
     end

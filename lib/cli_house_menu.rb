@@ -1,13 +1,13 @@
 def house_menu
-    puts "\nPlease type the name of the house you are searching for.\n\n"
+    puts "\nPlease type the name of the house you are searching to receive information regarding that house.\n\n"
     response = gets.chomp
 
     if House.all.find_by(name: response)
         choice = House.all.find_by(name: response)
-        puts "Name: #{choice.name}"
-        puts "Info: #{choice.info}"
+        # puts "Name: #{choice.name}"
+        puts "Info: \n#{choice.info}"
         
-        return_value = @prompt.select("Please choose if you would like to try a new house search, return to the main menu, or exit the database") do |menu|
+        return_value = @prompt.select("\n\nPlease choose if you would like to try a new house search, return to the main menu, or exit the database") do |menu|
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
             menu.choice 'Exit', 3
@@ -23,7 +23,7 @@ def house_menu
     
     else
         puts "I'm sorry. There is no house matching the name entered."
-        return_value = @prompt.select("Please choose if you would like to try again, return to the main menu, or exit the database") do |menu|
+        return_value = @prompt.select("\nPlease choose if you would like to try again, return to the main menu, or exit the database") do |menu|
             menu.choice 'Try again', 1
             menu.choice 'Main Menu', 2
             menu.choice 'Exit', 3

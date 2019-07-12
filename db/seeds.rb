@@ -8,6 +8,7 @@ s3 = Student.create(name: 'Cedric Diggory', email_address: 'cdiggory@hogwarts.ed
 s4 = Student.create(name: 'Luna Lovegood', email_address: 'llovegood@hogwarts.edu')
 s5 = Student.create(name: 'Hermione Granger', email_address: 'hgranger@hogwarts.edu')
 s6 = Student.create(name: 'Pansy Parkinson', email_address: 'pparkinson@hogwarts.edu')
+s7 = Student.create(name: 'Tom Riddle', email_address: 'triddle@hogwarts.edu')
 
 h1 = House.create(name: 'Gryffindor', info: "\n'You might belong in Gryffindor,/Where dwell the brave at heart,/Their daring, nerve and chivalry/Set Gryffindors apart.’
 
