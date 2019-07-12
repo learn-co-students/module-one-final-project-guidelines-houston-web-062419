@@ -6,7 +6,6 @@ def house_menu
 
     if House.all.find_by(name: response)
         choice = House.all.find_by(name: response)
-        # puts "Name: #{choice.name}"
         puts "Info: \n#{choice.info}"
         
         return_value = @prompt.select("\n\nPlease choose if you would like to try a new house search, return to the main menu, or exit the database") do |menu|
